@@ -1,1 +1,13 @@
+#include <stdio.h>
 
+int main(void){
+
+   char nome[11];
+
+    printf("Informe o seu nome:");
+    scanf("%[^\n]", nome);
+
+    printf(" o nome armazenado:%s", nome);
+
+   return 0; 
+}
