@@ -1,0 +1,10 @@
+
+#include <stdio.h>
+int main(){
+     char nome[]= {'e', 'd', 'u', 'a', 'r', 'd', 'o','\0'};
+
+     printf("NOME DO REMETENTE:%s", nome);
+
+    return 0; 
+
+}
