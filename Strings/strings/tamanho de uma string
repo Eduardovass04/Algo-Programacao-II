@@ -1,0 +1,18 @@
+//tamanho de uma string
+
+#include <stdio.h>
+
+ int main(){
+     
+    char palavra[]="amomeupai";
+   int tamanho=0;
+   int i=0;
+    
+   while(palavra[i] !='\0'){
+      tamanho++; i++;
+   }
+     
+   printf("A palavra %s tem um tamaho de: %d\n", palavra,tamanho);
+
+   return 0;
+ }
