@@ -1,0 +1,29 @@
+#include <stdio.h>
+ 
+ int main(){
+     
+     char nome1[1][20];
+      char nome2[1][20];
+
+       for(int i=0;i<1;i++){
+         printf("Informe o seu nome:\n");
+         scanf(" %[^\n]", nome1[i]);
+       }  //aramazenando os dados do primeiro nome
+
+        for( int j=0;j<1;j++){
+             printf("Informe o seu nome:\n");
+             scanf(" %[^\n]", nome2[j]);
+        }  //armazenando os dados do segundo nome
+
+           //comparação se são iguais
+            
+            for( int i=0;i<1;i++){
+                  for( int j=0;j<1;j++){
+                     if( nome1[i] != nome2[j]){
+                         printf(" %s = %s:\n", nome1[i], nome2[j]);
+                     }
+                  }
+            }
+            return 0; 
+ }
+
