@@ -1,0 +1,22 @@
+   // calcular o comprimento de uma string
+
+   #include <stdio.h>
+    int main(){
+
+       char nome[20];
+         int total=0;
+         
+
+         printf("Informe o seu nome:\n");
+         scanf("%s", nome);
+
+     
+          for(int i=0; nome[i] != '\0'; i++){
+              total++;
+          }
+         
+           printf("String: %s\n", nome);
+           printf("Tamanho da string:%d\n", total);
+
+           return 0;
+              }
