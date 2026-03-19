@@ -1,0 +1,33 @@
+#include <stdio.h>
+
+ int main(){
+
+   int mat[3][3]={{1,2,3}, {4,5,6}, {7,8,9}};
+   int vetor[9];
+
+
+   for( int i=0; i<3; i++){
+     for( int j=0; j<3; j++){
+
+      printf(" %4d", mat[i][j]);
+     }
+     printf("\n");
+   }
+
+
+    vetor[0]= mat[0][0];
+    vetor[1]= mat[0][1];
+    vetor[2]= mat[1][0];
+    vetor[3]= mat[2][0];
+    vetor[4]= mat[1][1];
+    vetor[5]= mat[0][2];
+    vetor[6]= mat[1][2];
+    vetor[7]= mat[2][2];
+    vetor[8]= mat[2][1];
+
+     for( int k=0; k<9; k++){
+      printf(" %d", vetor[k]);
+     }
+
+      return 0;
+ }
