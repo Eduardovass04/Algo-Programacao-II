@@ -1,0 +1,50 @@
+#include <stdio.h>
+
+ int main(){
+
+   int n;
+
+   printf("Informe o tamanho do vetor\n");
+   scanf("%d", &n); // tamanho do vetor
+
+   int a[n]; // vetor a declarado recebendo tam n.
+
+   for( int i=0; i<n; i++){
+
+    printf("Informe os elementos do vetor\n");
+    scanf("%d", &a[i]);
+   } // [1 4 7 8 10]
+
+   // manipulação 
+    int c=0;
+    int numeros;
+    int p[100];
+
+    for( int i=0; i<n; i++){
+       if( a[i] % 2==0){
+
+        // 0: a[1] % 2==0 ? - F
+        // 1: a[4] % 2==0 ? - V
+        // 2: a[7] % 2==0 ?-  F
+        // 3: a[8] % 2==0 ?- V
+        // 4: a[10] % 2==0 ?- V
+
+        p[c++]=a[i];
+        // 4 8 10
+       } else{
+        
+        numeros=0;
+       }
+    }
+
+     if( numeros==0){
+      printf("Nenhum numero par dentro do vetor\n");
+     }
+
+      for( int i=0; i<c; i++){
+
+        printf("%d", p[i]);
+      }
+
+      return 0;
+ }
