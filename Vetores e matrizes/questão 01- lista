@@ -1,0 +1,30 @@
+#include <stdio.h>
+
+int main(){
+
+  int  n;
+
+  printf("Digite o tamanho do vetor\n");
+  scanf("%d", &n);
+
+  int a[n];
+
+  for( int i=0; i<n; i++){
+    printf("Informe os elementos do vetor\n");
+    scanf("%d", &a[i]);
+  }
+
+  int b[n];
+  int c=0;
+  int t=n-1;
+
+  for( int i=0; i<n/2; i++){
+    b[c++]=a[i] + a[t--];
+  }
+
+  for( int j=0; j<c; j++){
+    printf("%d", b[j]);
+  }
+
+  return 0;
+}
