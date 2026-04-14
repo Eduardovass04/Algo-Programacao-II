@@ -1,0 +1,50 @@
+#include <stdio.h>
+
+int main(){
+
+    int m[3][3];
+
+    for( int i=0; i<3; i=i+1){
+        for( int j=0; j<3; j= j+1){
+            printf("Digite os elementos da matriz\n");
+            scanf("%d", &m[i][j]);
+        }
+    }
+
+    int h=0;
+
+    for( int i=0; i<3; i++){
+        for( int j=0; j<3; j++){
+            if( m[i][j] >0){
+                h=m[i][j];
+            }
+        }
+    }
+
+   
+
+    
+
+    int v[h+1];
+    int c;
+     // precisamos inicalizar o vetor com 0 para não gerar lixo de memória
+
+     for( int i=0; i<=h; i++){
+        v[i]=0;
+     }
+
+    for( int i=0; i<3; i++){
+        for( int j=0; j<3; j++){
+             c=m[i][j]; // aqui pega a frequência 
+             v[c]++; // esse ++ vai guarda a frequência em cada posição do vetor
+            }
+        }
+
+        // imprimindo o vetor
+
+        for( int i=0; i<=h; i++){
+            printf("[%d]:[%d]\n",i,v[i]);
+        }
+
+        return 0;
+    }
