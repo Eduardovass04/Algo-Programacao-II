@@ -1,0 +1,66 @@
+#include <stdio.h>
+
+typedef struct
+{
+
+    char marca[5][15];
+    int ano[5];
+    float preco[5];
+
+} carro;
+
+int main()
+{
+
+    carro p1;
+
+    float p;
+    
+
+    for ( int i = 0; i < 5; i++)
+    {
+
+        printf("Informe a marca do carro\n");
+        scanf(" %[^\n]", p1.marca[i]);
+    }
+// vetor carro com 5 de até 15 caracteres
+
+    for( int j = 0; j < 5; j++)
+    {
+
+    printf("Informe o ano do carro, \n");
+    scanf("%d", &p1.ano[j]);
+    }
+
+   for(int l = 0; l < 5; l++)
+   {
+    printf("Informe o preco do carro \n");
+    scanf("%f", &p1.preco[l]);
+    }
+
+printf("Informe um valor que tenha disponivel\n");
+scanf("%f", &p);
+int r=1;
+ for( int i=0; i<5; i++){
+
+ 
+if( p1.preco[i] < p){
+    printf("....Dados.....\n");
+    printf("Marca...... %s\n", p1.marca[i]);
+    printf("Ano.........%d\n", p1.ano[i]);
+    printf("Preco.......%.2f\n", p1.preco[i]);
+      r=1;
+   
+} else{
+
+    r=0;
+}
+
+
+}
+
+if( r==0){
+    printf("Valor indisponivel\n");
+}
+return 0;
+}
