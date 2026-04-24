@@ -1,0 +1,54 @@
+#include <stdio.h>
+#include <string.h>
+
+
+typedef struct {
+
+    char receitas_nome[5][25];
+    int quantidade[5];
+    char ingredientes[5][25];
+} receita;
+
+int main(){
+
+    receita p1;
+
+    char nomes[5][30];
+
+    for( int i=0; i<5; i++){
+        printf("Informe o nome das receitas \n");
+        scanf(" %[^\n]", p1.receitas_nome[i]);
+    }
+
+    for( int j=0; j<5; j++){
+        printf("Informe a quantidade de ingredientes\n");
+        scanf("%d", &p1.quantidade[j]);
+    }
+
+    for( int i=0; i<5; i++){
+        printf("Informe o nome dos ingredientes\n");
+        scanf(" %[^\n]", p1.ingredientes[i]);
+    }
+
+     for( int i=0; i<5; i++){
+        printf("Informe os nomes de receitas\n");
+        scanf(" %[^\n]", nomes[i]);
+     }
+
+     int r=1;
+     for( int i=0; i<5; i++){
+        if( strcmp( p1.receitas_nome[i], nomes[i]==1)){
+            printf("Ingredientes....... %s\n", p1.ingredientes[i]);
+          
+        } else{
+            r=0;
+        }
+     }
+
+      if( r==0){
+        printf("NAo sao iguais\n");
+
+      }
+
+       return 0;
+}
