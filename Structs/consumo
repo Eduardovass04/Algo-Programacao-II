@@ -1,0 +1,38 @@
+#include <stdio.h>
+
+typedef struct {
+
+    char eletrodo[5][100];
+    float potencia[5];
+    int tempo[5];
+} calculo;
+
+int main(){
+
+   calculo p1;
+   
+
+   for( int i=0; i<5; i++){
+
+    printf("Digite o nome dos eletrodomesticos\n");
+    scanf(" %[^\n]", p1.eletrodo[i]);
+   }
+
+   for( int k=0; k<5; k++){
+    printf("Informe a potencia\n");
+    scanf("%f", &p1.potencia[k]);
+   }
+
+   for( int l=0; l<5; l++){
+
+    printf("Informe o tempo \n");
+    scanf("%d", &p1.tempo[l]);
+   }
+
+   printf("Nome 1............... %s\n", p1.eletrodo[0]);
+   printf("Potencia 1.............. %.2f\n", p1.potencia[0]);
+   printf("Tempo........................%d\n", p1.tempo[0]);
+
+   return 0;
+
+}
