@@ -1,0 +1,31 @@
+#include <stdio.h>
+#define max 100
+
+int main(){
+
+    char nome[max];
+
+    printf("Digite \n");
+    scanf(" %[^\n]", nome);
+
+    int i=0;
+     int e=1;
+    while( nome[i] !='\0'){
+
+        if((nome[i] >='a' && nome[i] <='z') ||  (nome[i] >='A' && nome[i] <='Z')){
+
+        } else{
+            e=0;
+            break;
+        }
+        i++;
+    }
+
+     if( e==1){
+        printf("Apenas letras\n");
+     } else if ( e==0){
+        printf("Contem outros caractres");
+     }
+
+    return 0;
+}
