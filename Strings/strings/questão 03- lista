@@ -1,0 +1,34 @@
+#include <stdio.h>
+
+int main(){
+
+    int vet[5];
+    int n;
+     
+    for( int i=0; i<5; i++){
+
+        printf("Informe os valores entre 65 e 122\n");
+        scanf("%d", &n);
+
+        if( n >= 65 && n <=122){
+            vet[i]=n;
+        } else{
+            i--;
+        }
+    }
+     
+
+    int tamanho=5;
+
+    char carac[tamanho+1];
+
+    for( int i=0; i<tamanho; i++){
+        carac[i]=(char)vet[i];
+    }
+
+    carac[tamanho]='\0';
+
+    printf(" %s\n", carac);
+
+    return 0;
+}
