@@ -1,0 +1,60 @@
+#include <stdio.h>
+
+double calcularmat( int n, int a[][n]){
+   int e=0; // contador que acumula o total de zeros
+   double r; // para guardar a porcentagem 
+   int total;
+    for( int i=0; i<n; i++){
+        for( int j=0; j<n; j++){
+
+            if ( a[i][j] ==0){
+                e++;
+            }
+        }
+    }
+     total= n * n;
+    r=( e * 100)/ total;
+
+    if( r > 50.0){
+        printf(" A matriz e esparsa %.2f%%  \n",  r);
+        return 1;
+
+    } else{
+        printf(" NAo e esparsa \n");
+        return 0;
+    }
+
+}
+
+ void exibir( int n, int ma[][n]){ // função para exibir a matriz
+    
+    for( int i=0; i<n; i++){
+        for( int j=0; j<n; j++){
+            printf("%4d", ma[i][j]);
+        }
+        printf("\n");
+    }
+ }
+
+int main(){
+
+    int n; // tamanho das dimensões da  matriz
+   
+    printf("Digite o tamanho da matriz\n");
+    scanf("%d", &n);
+     int mat[n][n]; // atribuindo o tamanho para a matriz
+
+    for( int i=0; i<n; i++){ // laço que preenche a matriz
+        for( int j=0; j<n; j++){
+            printf("Digite os elementos da matriz\n");
+            scanf("%d", &mat[i][j]);
+        }
+    }
+
+    double f=calcularmat( n, mat); // variaveis globais
+    printf("%.2f\n", f); // chamando a função 
+
+    exibir(n,mat);
+
+    return 0;
+}
