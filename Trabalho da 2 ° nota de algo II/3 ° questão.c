@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#define Max 100
 
 struct estudante{
 
@@ -11,8 +12,8 @@ struct estudante{
 
 struct funcionarios {
 
- char ultimonome[20];
- char primeironome[20];
+ char ultimonome[50];
+ char primeironome[50];
  float salario;
 };
 
@@ -24,11 +25,16 @@ void mostrar_os_dados_de_um_estudante(int t, struct estudante alu[]);
 void mostrar_os_dados_de_um_funcionario( int t, struct funcionarios trabalhadores[]);
 
 int main(){
-
-     struct estudante alu[2];
+    
+     struct estudante alu[Max];
+     int qtd_estudante=0;
      
-     struct funcionarios trabalhadores[2];
+     struct funcionarios trabalhadores[Max];
+     int qtd_funcionarios=0;
    int opc;
+   
+   
+   
 
    do{
 
@@ -43,22 +49,34 @@ int main(){
     scanf("%d", &opc);
 
     if(opc==1){
-        cadastrar_estudantes( 3,alu);
+        if(qtd_estudante >= Max){
+            printf("ERRO! Limite atingido!\n");
+        }else
+        {
+            cadastrar_estudantes(qtd_estudante, alu);
+            qtd_estudante++;
+        }
        
     } else if(opc==2){
-        cadastrar_funcionarios(3, trabalhadores);
+        if(qtd_funcionarios >= Max){
+            printf("ERRO! Limite atingido!");
+        }else
+        {
+            cadastrar_funcionarios(qtd_funcionarios, trabalhadores);
+            qtd_funcionarios++;
+        }
        
     } else if(opc==3){
-        mostrar_todos_os_estudantes(3, alu);
+        mostrar_todos_os_estudantes(qtd_estudante, alu);
        
     } else if(opc==4){
-        mostra_todos_os_funcionarios(3, trabalhadores);
+        mostra_todos_os_funcionarios(qtd_funcionarios, trabalhadores);
 
     } else if(opc==5){
-        mostrar_os_dados_de_um_estudante(3, alu);
+        mostrar_os_dados_de_um_estudante(qtd_estudante, alu);
       
     } else if(opc==6){
-        mostrar_os_dados_de_um_funcionario(3, trabalhadores);
+        mostrar_os_dados_de_um_funcionario(qtd_funcionarios, trabalhadores);
       
     } else if(opc==0){
         printf("Encerrando programa..\n");
@@ -73,64 +91,57 @@ int main(){
 
 void cadastrar_estudantes(int t, struct estudante alu[] ){
 
-     int repete;
+    int repete;
 
+    do{
+
+    repete=0;
+
+        printf("Digite o seu primeiro nome:\n");
+    scanf(" %[^\n]", alu[t].primeironome);
+
+    printf("Digite o seu ultimo nome:\n");
+    scanf(" %[^\n]", alu[t].ultimonome);
     
+    printf("Digite o seu rendimento academico:\n");
+    scanf(" %f", &alu[t].rendimentoacademico);
 
-    for( int i=0; i<t; i++){
+    for( int j=0; j<t; j++){
 
-        do{
+        if(strcmp(alu[t].primeironome, alu[j].primeironome)==0 &&
 
-       repete=0;
+        strcmp(alu[t].ultimonome, alu[j].ultimonome)==0){
 
-          printf("Digite o seu primeiro nome:\n");
-        scanf(" %s", alu[i].primeironome);
+            repete=1;
 
-        printf("Digite o seu ultimo nome:\n");
-        scanf(" %s", alu[i].ultimonome);
-     
-        printf("Digite o seu rendimento academico:\n");
-        scanf(" %f", &alu[i].rendimentoacademico);
-
-        for( int j=0; j<i; j++){
-
-            if(strcmp(alu[i].primeironome, alu[j].primeironome)==0 &&
-
-            strcmp(alu[i].ultimonome, alu[j].ultimonome)==0){
-
-                repete=1;
-
-                printf(" Aluno ja esta cadastrado \n");
-            }
+            printf(" Aluno ja esta cadastrado \n");
         }
+    }
     } while(repete);
 
-    }
 }
 
 void cadastrar_funcionarios(int t, struct funcionarios trabalhadores[]){
 
-     int repete2;
-
-    for( int i=0; i<t; i++){
-
-        repete2=0;
+     int repete2;       
 
         do{
 
+             repete2=0;
+
               printf("Digite o seu primeiro nome:\n");
-        scanf(" %s", trabalhadores[i].primeironome);
+        scanf(" %[^\n]", trabalhadores[t].primeironome);
         
         printf("Digite o seu ultimo nome:\n");
-        scanf(" %s", trabalhadores[i].ultimonome);
+        scanf(" %[^\n]", trabalhadores[t].ultimonome);
 
 
         printf("Digite o seu salario:\n");
-        scanf(" %f", &trabalhadores[i].salario);
+        scanf(" %f", &trabalhadores[t].salario);
 
-        for( int j=0; j<i; j++){
-            if(strcmp(trabalhadores[i].primeironome, trabalhadores[j].primeironome)==0
-        && strcmp(trabalhadores[i].ultimonome, trabalhadores[j].ultimonome)==0){
+        for( int j=0; j<t; j++){
+            if(strcmp(trabalhadores[t].primeironome, trabalhadores[j].primeironome)==0
+        && strcmp(trabalhadores[t].ultimonome, trabalhadores[j].ultimonome)==0){
 
             repete2=1;
         
@@ -138,8 +149,6 @@ void cadastrar_funcionarios(int t, struct funcionarios trabalhadores[]){
     }
         }
     }while(repete2);
-
-    }
 }
 
 void mostrar_todos_os_estudantes(int t, struct estudante alu[]){
@@ -150,6 +159,7 @@ void mostrar_todos_os_estudantes(int t, struct estudante alu[]){
 
          printf("Primeiro nome: %s\n", alu[i].primeironome);
         printf("Ultimo Nome: %s\n", alu[i].ultimonome );
+        printf("Rendimento academico %.2f\n", alu[i].rendimentoacademico);
 
        
     }
@@ -162,6 +172,7 @@ void mostra_todos_os_funcionarios(int t, struct funcionarios trabalhadores[]){
         printf("Funcionario %d\n", i+1);
          printf("Primeiro nome: %s\n", trabalhadores[i].primeironome);
         printf("Ultimo Nome: %s\n", trabalhadores[i].ultimonome);
+        printf("Salario %.2f\n", trabalhadores[i].salario);
        
     }
 }
@@ -174,7 +185,7 @@ void mostra_todos_os_funcionarios(int t, struct funcionarios trabalhadores[]){
     printf("Digite a posicao do estudante que deseja ver\n");
     scanf("%d", &escolher);
 
-    do{
+    
 
         if( escolher >=0 && escolher < t){
 
@@ -184,11 +195,10 @@ void mostra_todos_os_funcionarios(int t, struct funcionarios trabalhadores[]){
 
             printf("Ultimo nome %s\n", alu[escolher].ultimonome);
 
-            printf("rendimento academico %.2f\n", alu[escolher].rendimentoacademico);
+            printf("Rendimento academico %.2f\n", alu[escolher].rendimentoacademico);
         } else{
             printf(" Posicao indisponivel\n");
         }
-    } while( escolher <0);
 
  }
 
@@ -199,7 +209,7 @@ void mostra_todos_os_funcionarios(int t, struct funcionarios trabalhadores[]){
     printf("Digite a posicao do funcionario que deseja ver:\n");
     scanf("%d", &escolher2);
 
-    do{
+    
 
         if( escolher2 >=0 && escolher2 <t){
 
@@ -210,10 +220,10 @@ void mostra_todos_os_funcionarios(int t, struct funcionarios trabalhadores[]){
         printf("Ultimo nome %s\n", trabalhadores[escolher2].ultimonome);
 
 
-        printf("salario %.2f\n", trabalhadores[escolher2].salario);
+        printf("Salario %.2f\n", trabalhadores[escolher2].salario);
 
           } else{
             printf(" Posicao indisponivel\n");
           }
-    } while(escolher2<0);
+   
  }
