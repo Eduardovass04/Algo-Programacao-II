@@ -1,0 +1,55 @@
+#include <stdio.h>
+
+void ordenaPonteiros(int **vPtr, int n);
+
+int main()
+{
+    int n;
+    printf("Tamanho do vetor:\n");
+    scanf("%d", &n);
+
+    int v[n]; //[{50, 10, 30, 20, 40}] t=4
+
+    for (int i = 0; i < n; i = i + 1)
+    {
+        printf("Digite os elementos do vetor\n");
+        scanf("%d", &v[i]);
+    }
+
+    int *vp[n]; 
+
+    for(int i=0; i<n; i++){
+      vp[i]=&v[i]; //pegando os endereços
+    }
+    
+        ordenaPonteiros(vp, n);
+
+    return 0;
+}
+void ordenaPonteiros(int **vPtr, int n)
+{
+
+    int *aux; // ponteiro q vai guardar o endereço
+
+    for (int i = 0; i < n - 1; i++)
+    { // 0 < 3, 1 < 2[0 1 ]
+
+        for (int j = i + 1; j < n; j++)
+        {
+
+            if (**(vPtr + i) > **(vPtr + j))
+            {
+                aux = *(vPtr + i);
+                *(vPtr + i) = *(vPtr + j);
+                *(vPtr + j) = aux;
+            }
+        }
+    }
+
+    printf("Saida:\n");
+
+    for(int i=0; i<n; i++){
+
+        printf("%d\n", **(vPtr+i));
+    }
+}
