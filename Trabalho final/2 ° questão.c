@@ -1,17 +1,16 @@
 #include <stdio.h>
 
-void inverter(int *in, int *fim);
 void deslocarv(int *v, int n, int k);
+
 int main()
 {
-
-    int n; // tamanho
-    int k; //  2 
+    int n;
+    int k;
 
     printf("Digite o tamanho:\n");
     scanf("%d", &n);
 
-    int vetor[n]; //[1 2 3 4 5]
+    int vetor[n];
 
     for (int i = 0; i < n; i++)
     {
@@ -23,22 +22,10 @@ int main()
     scanf("%d", &k);
 
     deslocarv(vetor, n, k);
+
     return 0;
 }
-void inverter(int *in, int *fim)
-{
-    int aux;
 
-    while (in < fim)
-    {
-        aux = *in;
-        *in = *fim;
-        *fim = aux;
-
-        in++;
-        fim--;
-    }
-}
 void deslocarv(int *v, int n, int k)
 {
     if (k > n)
@@ -50,13 +37,45 @@ void deslocarv(int *v, int n, int k)
     {
         return;
     }
-    inverter(v, v +  ( k - 1));
-    inverter(v+k, v + (n - 1));
 
-    for (int i = 0; i < n; i = i + 1)
+    int *in;
+    int *fim;
+    int aux;
+
+    // Primeira inversão
+    in = v;
+    fim = v + (k - 1);
+
+    while (in < fim)
     {
+        aux = *in;
+        *in = *fim;
+        *fim = aux;
 
-        printf("%d", *(v + i));
+        in++;
+        fim--;
     }
+
+    // Segunda inversão 
+    in = v + k;
+    fim = v + (n - 1);
+
+    while (in < fim)
+    {
+        aux = *in;
+        *in = *fim;
+        *fim = aux;
+
+        in++;
+        fim--;
+    }
+
+    printf("Saida:\n");
+
+    for (int i = 0; i < n; i++)
+    {
+        printf("%d ", *(v + i));
+    }
+
     printf("\n");
 }
