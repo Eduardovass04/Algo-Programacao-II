@@ -1,35 +1,25 @@
 #include <stdio.h>
 
 int obter_tamanho(char *str);
-void copiar_string(char *destino, char *origem);
-int comparar_strings(char *str1, char *str2);
-void encontrarMaior(char *N, int T, int index, char *maior);
+void copiar_string(char *copia, char *numero);
+int comparar_strings(char *atual, char *maior);
+void encontrarMaior(char *N, int T, int indice, char *maior);
 
 int main()
 {
     char N[42];
     int T;
 
-    printf("==================================================\n");
-    printf("         MAIOR NUMERO COM ATE T TROCAS            \n");
-    printf("==================================================\n");
-
     while (1)
     {
-
-        printf("Digite o numero N e a quantidade de trocas T:\n");
-        printf("Digite 0 Para encerrar o programa:\n");
-        printf("Entrada: ");
-
         if (scanf("%s %d", N, &T) != 2)
         {
             break;
         }
 
-        if (comparar_strings(N, "0") == 0 && T == 0)
+        if (comparar_strings(N, "0") == 0 && T == 0) // condição de parada
         {
-            printf(" Programa encerrado\n");
-            break;
+            break; //encerra
         }
 
         char maior[42];
@@ -37,51 +27,49 @@ int main()
 
         encontrarMaior(N, T, 0, maior);
 
-        printf("Saída: %s\n", maior);
-        printf("--------------------------------------------------\n");
+        printf("%s\n", maior); //resultado final
     }
-
     return 0;
 }
 
 int obter_tamanho(char *str)
 {
-    int len = 0;
-    while (*(str + len) != '\0')
+    int tamanho = 0;
+    while (*(str + tamanho) != '\0')
     {
-        len++;
+        tamanho++;
     }
-    return len;
+    return tamanho;
 }
 
-void copiar_string(char *destino, char *origem)
+void copiar_string(char *copia, char *numero)
 {
     int i = 0;
-    while (*(origem + i) != '\0')
+    while (*(numero + i) != '\0')
     {
-        *(destino + i) = *(origem + i);
+        *(copia + i) = *(numero + i);
         i++;
     }
-    *(destino + i) = '\0';
+    *(copia + i) = '\0';
 }
 
-int comparar_strings(char *str1, char *str2)
+int comparar_strings(char *atual, char *maior)
 {
     int i = 0;
-    while (*(str1 + i) != '\0' && *(str2 + i) != '\0')
+    while (*(atual + i) != '\0' && *(maior + i) != '\0')
     {
-        if (*(str1 + i) != *(str2 + i))
+        if (*(atual + i) != *(maior+ i))
         {
-            return *(str1 + i) - *(str2 + i);
+            return *(atual + i) - *(maior + i);
         }
         i++;
     }
-    return *(str1 + i) - *(str2 + i);
+    return *(atual + i) - *(maior + i);
 }
 
-void encontrarMaior(char *N, int T, int index, char *maior)
+void encontrarMaior(char *N, int T, int indice, char *maior)
 {
-    if (T == 0 || *(N + index) == '\0')
+    if (T == 0 || *(N + indice) == '\0')
     {
 
         if (comparar_strings(N, maior) > 0)
@@ -91,10 +79,10 @@ void encontrarMaior(char *N, int T, int index, char *maior)
         return;
     }
 
-    int len = obter_tamanho(N);
-    char maior_digito = *(N + index);
+    int tamanho = obter_tamanho(N);
+    char maior_digito = *(N + indice);
 
-    for (int i = index + 1; i < len; i++)
+    for (int i = indice + 1; i < tamanho; i++)
     {
         if (*(N + i) > maior_digito)
         {
@@ -102,26 +90,26 @@ void encontrarMaior(char *N, int T, int index, char *maior)
         }
     }
 
-    if (maior_digito != *(N + index))
+    if (maior_digito != *(N + indice))
     {
 
-        for (int i = index + 1; i < len; i++)
+        for (int i = indice + 1; i < tamanho; i++)
         {
             if (*(N + i) == maior_digito)
             {
-
-                char temp = *(N + index);
-                *(N + index) = *(N + i);
+                               // troca
+                char temp = *(N + indice);
+                *(N + indice) = *(N + i);
                 *(N + i) = temp;
 
-                encontrarMaior(N, T - 1, index + 1, maior);
+                encontrarMaior(N, T - 1, indice + 1, maior);
 
-                temp = *(N + index);
-                *(N + index) = *(N + i);
+                temp = *(N + indice);
+                *(N + indice) = *(N + i);
                 *(N + i) = temp;
             }
         }
     }
 
-    encontrarMaior(N, T, index + 1, maior);
+    encontrarMaior(N, T, indice + 1, maior);
 }
