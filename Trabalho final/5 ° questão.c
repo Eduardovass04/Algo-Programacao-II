@@ -1,33 +1,33 @@
 #include <stdio.h>
 
-// Protótipo 
-int tamanhoCollatz(long long n, FILE *arq);
+int tamanhoCollatz(unsigned long long n, FILE *arq);
 
 int main() {
-
     int N;
 
     printf("Digite um numero positivo: ");
-    scanf("%d", &N);
+
+    if (scanf("%d", &N) != 1) {
+        return 1;
+    }
 
     FILE *arq = fopen("collatz.txt", "w");
-
     if (arq == NULL) {
         printf("Erro ao abrir o arquivo!\n");
         return 1;
     }
 
-    fprintf(arq, "Todas as cadeias de Collatz\n\n");
+    fprintf(arq, "Todas as cadeias de Collatz ---\n");
 
-    int num_maior_cadeia = 1;
-    int tamanho_maior_cadeia = 1;
+    int num_maior_cadeia = 1; //armazena o numero com a maior cadeia encontrada
+    int tamanho_maior_cadeia = 1; //armazena o tamanho da maior cadeia encontrada
 
     for (int i = 1; i <= N; i++) {
-
         fprintf(arq, "%d: ", i);
 
-        int tamanho_atual = tamanhoCollatz(i, arq);
+        int tamanho_atual = tamanhoCollatz((unsigned long long)i, arq);
 
+         //atualiza a maior cadeia encontrada
         if (tamanho_atual > tamanho_maior_cadeia) {
             tamanho_maior_cadeia = tamanho_atual;
             num_maior_cadeia = i;
@@ -36,32 +36,27 @@ int main() {
 
     fclose(arq);
 
-    printf("\nNum_maior_cadeia = %d\n", num_maior_cadeia);
-    printf("Tamanho_maior_cadeia = %d\n", tamanho_maior_cadeia);
+    printf("Numero maior da cadeia = %d\n", num_maior_cadeia);
+    printf("Tamanho maior cadeia = %d\n", tamanho_maior_cadeia);
 
     return 0;
 }
 
-// Implementação 
-int tamanhoCollatz(long long n, FILE *arq) {
-
+int tamanhoCollatz(unsigned long long n, FILE *arq) {
     int tamanho = 1;
 
-    
     while (n != 1) {
-   fprintf(arq, "%d -> ", (int)n);
+       
+        fprintf(arq, "%llu->", n);
 
         if (n % 2 == 0) {
             n = n / 2;
-        }
-        else {
+        } else {
             n = 3 * n + 1;
         }
-
         tamanho++;
     }
 
     fprintf(arq, "1\n");
-
     return tamanho;
 }
