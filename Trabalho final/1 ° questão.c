@@ -8,7 +8,7 @@ int main()
     printf("Tamanho do vetor:\n");
     scanf("%d", &n);
 
-    int v[n]; //[{50, 10, 30, 20, 40}] t=4
+    int v[n]; //[{50, 10, 30, 20, 40}] t=5
 
     for (int i = 0; i < n; i = i + 1)
     {
@@ -50,6 +50,7 @@ void ordenaPonteiros(int **vPtr, int n)
 
     for(int i=0; i<n; i++){
 
-        printf("%d\n", **(vPtr+i));
+        printf(" %d", **(vPtr+i));
     }
+    printf("\n");
 }
