@@ -4,13 +4,14 @@ void deslocarv(int *v, int n, int k);
 
 int main()
 {
-    int n;
-    int k;
+    int n; //tamanho do meu vetor
+    int k; // k deslocamentos
 
-    printf("Digite o tamanho:\n");
-    scanf("%d", &n);
+    printf("Digite o tamanho do vetor e o deslocamento:\n");
+    scanf("%d %d", &n, &k);
 
-    int vetor[n];
+    int vetor[n]; //vetor criado
+    //[1 2 3 4 5]
 
     for (int i = 0; i < n; i++)
     {
@@ -18,29 +19,27 @@ int main()
         scanf("%d", &vetor[i]);
     }
 
-    printf("Tamanho do deslocamento:\n");
-    scanf("%d", &k);
-
-    deslocarv(vetor, n, k);
+    deslocarv(vetor, n, k); //&vetor[0]
 
     return 0;
 }
 
 void deslocarv(int *v, int n, int k)
 {
+    // v guarda o inicio do meu vetor
     if (k > n)
     {
-        k = k % n;
+        k = k % n; 
     }
 
     if (k == 0)
     {
-        return;
+        return; // k ==0 return
     }
 
-    int *in;
-    int *fim;
-    int aux;
+    int *in; // ponteiro para o inicio
+    int *fim; 
+    int aux; 
 
     // Primeira inversão
     in = v;
